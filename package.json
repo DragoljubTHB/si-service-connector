@@ -1,0 +1,21 @@
+{
+  "name": "si-service-connector",
+  "version": "0.0.1",
+  "description": "handles log in/out of systems",
+  "main": "handler.js",
+  "scripts": {
+    "create": "aws lambda create-function --function-name ontology-parser --handler handler.handler --memory-size 128 --runtime nodejs6.10 --role arn:aws:iam::309837773135:role/s3-full --timeout 5 --publish --zip-file fileb://Lambda-Deployment.zip",
+    "deploy": "aws lambda update-function-code --function-name ontology-parser --zip-file fileb://Lambda-Deployment.zip",
+    "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
+    "precreate": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dado",
+  "license": "ISC",
+  "devDependencies": {
+    "async": "^2.5.0",
+    "aws-sdk": "^2.108.0",
+    "serverless-dynamodb-local": "^0.2.18",
+    "serverless-offline": "^3.8.3"
+  }
+}
